@@ -10,9 +10,9 @@ import { transformObjectToRoute } from '@/utils/route';
 export const usePermissionStore = defineStore('permission', {
   state: () => ({
     whiteListRouters: ['/login'],
-    routers: [],
-    removeRoutes: [],
-    asyncRoutes: [],
+    routers: [] as RouteRecordRaw[],
+    removeRoutes: [] as RouteRecordRaw[],
+    asyncRoutes: [] as RouteRecordRaw[],
   }),
   actions: {
     async initRoutes() {
@@ -38,7 +38,7 @@ export const usePermissionStore = defineStore('permission', {
     },
     async restoreRoutes() {
       // 不需要在此额外调用initRoutes更新侧边导肮内容，在登录后asyncRoutes为空会调用
-      this.asyncRoutes.forEach((item: RouteRecordRaw) => {
+      this.asyncRoutes.forEach((item) => {
         if (item.name) {
           router.removeRoute(item.name);
         }
